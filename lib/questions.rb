@@ -184,31 +184,37 @@ end
 # 'the lion the witch and the wardrobe' becomes
 # 'The Lion the Witch and the Wardrobe'
 def titleize_a_string(string)
-  
+  exceptions = ['a', 'and', 'the']
+  string.split(' ').map.with_index{ |word, i| i!=0 && (exceptions.include?(word)) ? word.downcase : word.capitalize}.join(' ')
 end
 
 # return true if a string contains any special characters
 # where 'special character' means anything apart from the letters
 # a-z (uppercase and lower) or numbers
 def check_a_string_for_special_characters(string)
+  !(string !~ /[^a-z0-9]/i)
 end
 
 # get the upper limit of a range. e.g. for the range 1..20, you
 # should return 20
 def get_upper_limit_of(range)
+  range.max
 end
 
 # should return true for a 3 dot range like 1...20, false for a
 # normal 2 dot range
 def is_a_3_dot_range?(range)
+  range.max < range.to_s.split('.').last.to_i
 end
 
 # get the square root of a number
 def square_root_of(number)
+  number**0.5
 end
 
 # count the number of words in a file
 def word_count_a_file(file_path)
+  File.readlines(file_path).each{|line| line.split(" ")}.join.split(" ").size
 end
 
 # --- tougher ones ---
@@ -217,6 +223,7 @@ end
 # called call_method_from_string('foobar')
 # the method foobar should be invoked
 def call_method_from_string(str_method)
+  
 end
 
 # return true if the date is a uk bank holiday for 2014
